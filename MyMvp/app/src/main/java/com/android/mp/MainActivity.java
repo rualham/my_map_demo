@@ -5,14 +5,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.mp.bean.LoginBean;
 import com.android.mp.databinding.MyActivityBinding;
 import com.android.mp.model.ImpLoginModel;
 import com.android.mp.presenter.ImpLoginPresenter;
 import com.android.mp.view.LoginView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.ui.AppBarConfiguration;
 
 public class MainActivity extends AppCompatActivity implements LoginView {
 
@@ -38,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements LoginView {
                 impLoginPresenter.loginPresenter("这里填写申请账号", "这里填写密码");
             }
         });
+    }
+
+    @Override
+    public void requestLoading() {
+
     }
 
     @Override
