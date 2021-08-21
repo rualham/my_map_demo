@@ -1,4 +1,4 @@
-package com.android.mp;
+package com.android.mp.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.mp.R;
 import com.android.mp.bean.LoginBean;
 import com.android.mp.databinding.MyActivityBinding;
 import com.android.mp.model.ImpLoginModel;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements LoginView {
         setContentView(binding.getRoot());
         initView();
         impLoginPresenter = new ImpLoginPresenter(new ImpLoginModel(), this);
+        impLoginPresenter.attach(this);
     }
 
     private void initView() {

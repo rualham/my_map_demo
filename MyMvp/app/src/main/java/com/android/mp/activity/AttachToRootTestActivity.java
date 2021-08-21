@@ -2,17 +2,14 @@ package com.android.mp.activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.mp.R;
-import com.android.mp.widget.CustomLinear;
 
+//用来 测试attachToRoot用法
 public class AttachToRootTestActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
