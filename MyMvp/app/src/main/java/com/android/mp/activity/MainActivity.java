@@ -56,4 +56,11 @@ public class MainActivity extends AppCompatActivity implements LoginView {
     public void onFail(String error) {
         Toast.makeText(this, "请求失败", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        impLoginPresenter.detach();
+        impLoginPresenter.interruptHttp();
+    }
 }
