@@ -26,6 +26,7 @@ public class GoodActivity extends AbstractMvpAppCompatActivity<RequestView5, Req
 
     @FieldView(R.id.tv_text)
     private TextView textView;
+    private RequestPresenter5 requestPresenter5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +42,26 @@ public class GoodActivity extends AbstractMvpAppCompatActivity<RequestView5, Req
         if (savedInstanceState != null) {
             Log.e("perfect-mvp", "MainActivity  onCreate 测试  = " + savedInstanceState.getString("test"));
         }
+        requestPresenter5 = new RequestPresenter5();
     }
-
 
     //点击事件
     public void request(View view) {
         Log.e("perfect-mvp", "点击事件");
         getMvpPresenter().clickRequest("101010100");
+//        requestPresenter5.clickRequest("101010100");
     }
-
 
     @Override
     public void requestLoading() {
         textView.setText("请求中,请稍后...");
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestPresenter5.onAttachMvpView(this);
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
