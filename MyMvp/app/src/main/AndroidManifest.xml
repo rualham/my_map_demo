@@ -10,8 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <!--        android:name=".activity.AttachToRootTestActivity"-->
+<!--        android:name=".activity.MainActivity"-->
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.GoodActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
