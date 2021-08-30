@@ -1,10 +1,14 @@
 package com.android.mp.activity;
 
+import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.mp.R;
@@ -14,11 +18,12 @@ import com.android.mp.model.ImpLoginModel;
 import com.android.mp.presenter.ImpLoginPresenter;
 import com.android.mp.view.LoginView;
 
-public class MainActivity extends AppCompatActivity implements LoginView {
+public class MainActivity extends Activity implements LoginView {
 
     private MyActivityBinding binding;
     private ImpLoginPresenter impLoginPresenter;
     private Button myLoginBt;
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,53 @@ public class MainActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e(TAG, "onDestroy");
         impLoginPresenter.detach();
         impLoginPresenter.interruptHttp();
     }
+
+
+    @Override
+    protected void onStart() {
+        Log.e(TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.e(TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.e(TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.e(TAG, "onConfigurationChanged");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.e(TAG, "onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause");
+    }
+
+
 }
