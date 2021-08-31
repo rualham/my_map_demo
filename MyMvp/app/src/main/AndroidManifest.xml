@@ -12,7 +12,7 @@
         <!--        android:name=".activity.AttachToRootTestActivity"-->
         <!--        android:name=".activity.MainActivity"-->
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.ChildThreadUpdateActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="sensor"
