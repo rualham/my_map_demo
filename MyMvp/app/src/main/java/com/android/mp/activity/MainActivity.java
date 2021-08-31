@@ -1,6 +1,7 @@
 package com.android.mp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.e(TAG, "onCreate");
         binding = MyActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initView();
@@ -42,6 +43,7 @@ public class MainActivity extends Activity implements LoginView {
             @Override
             public void onClick(View v) {
                 impLoginPresenter.loginPresenter("这里填写申请账号", "这里填写密码");
+                startActivity(new Intent(MainActivity.this,GoodActivity.class));
             }
         });
     }
@@ -112,6 +114,4 @@ public class MainActivity extends Activity implements LoginView {
         super.onPause();
         Log.e(TAG, "onPause");
     }
-
-
 }
