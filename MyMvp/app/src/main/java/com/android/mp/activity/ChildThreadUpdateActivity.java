@@ -1,5 +1,7 @@
 package com.android.mp.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,6 +45,20 @@ public class ChildThreadUpdateActivity extends Activity implements View.OnClickL
         update_handlerPostDelay.setOnClickListener(this);
         update_RunOnUiThread.setOnClickListener(this);
         update_AsyncTask.setOnClickListener(this);
+
+        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(update_handler, "scaleX", 1f, 0.01f);
+        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(update_handler, "scaleY", 1f, 0.01f);
+        AnimatorSet  bootAdAnimator = new AnimatorSet();
+//        if (offset[0] == 0 && offset[1] == 0) {
+//            bootAdAnimator.playTogether(scaleXAnimator, scaleYAnimator);
+//        } else {
+//            ObjectAnimator translateXAnimator = ObjectAnimator.ofFloat(view, "translationX", 0, offset[0]);
+//            ObjectAnimator translateYAnimator = ObjectAnimator.ofFloat(view, "translationY", 0, offset[1]);
+//            bootAdAnimator.playTogether(translateXAnimator, translateYAnimator, scaleXAnimator, scaleYAnimator);
+//        }
+        bootAdAnimator.playTogether(scaleXAnimator, scaleYAnimator);
+        bootAdAnimator.setDuration(5000);
+        bootAdAnimator.start();
 
     }
 
