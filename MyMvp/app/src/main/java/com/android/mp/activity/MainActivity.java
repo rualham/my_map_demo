@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import com.android.mp.databinding.MyActivityBinding;
 import com.android.mp.model.ImpLoginModel;
 import com.android.mp.presenter.ImpLoginPresenter;
 import com.android.mp.view.LoginView;
+import com.bumptech.glide.Glide;
 
 public class MainActivity extends Activity implements LoginView {
 
@@ -25,16 +28,73 @@ public class MainActivity extends Activity implements LoginView {
     private ImpLoginPresenter impLoginPresenter;
     private Button myLoginBt;
     private String TAG = "MainActivity";
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate");
         binding = MyActivityBinding.inflate(getLayoutInflater());
+//        Glide.with(context).load(item.image).placeholder(R.drawable.lvmm_default_bg).centerCrop().dontAnimate().into(imgView);
+
         setContentView(binding.getRoot());
         initView();
         impLoginPresenter = new ImpLoginPresenter(new ImpLoginModel(), this);
         impLoginPresenter.attach(this);
+        view = new View(this);
+        myLoginBt.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "view post myLoginBt 1111");
+            }
+        });
+        UI.HANDLER.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "UI.HANDLER post222");
+            }
+        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "new Thread11111(new Runna post444");
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "new Thread2222(new Runna post444");
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "new Thread3333(new Runna post444");
+            }
+        }).start();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "runOnUiThread post333");
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("MainActivity", "runOnUiThread post555");
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public static class UI {
+        public static final Handler HANDLER = new Handler(Looper.getMainLooper());
     }
 
     private void initView() {
@@ -43,7 +103,7 @@ public class MainActivity extends Activity implements LoginView {
             @Override
             public void onClick(View v) {
                 impLoginPresenter.loginPresenter("这里填写申请账号", "这里填写密码");
-                startActivity(new Intent(MainActivity.this,GoodActivity.class));
+                startActivity(new Intent(MainActivity.this, GoodActivity.class));
             }
         });
     }
@@ -89,6 +149,12 @@ public class MainActivity extends Activity implements LoginView {
     protected void onResume() {
         Log.e(TAG, "onResume");
         super.onResume();
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("MainActivity", "view post1111");
+            }
+        });
     }
 
     @Override
